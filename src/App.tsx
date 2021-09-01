@@ -1,26 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useAppSelector } from "./store/hooks";
+import { RootState } from "./store/index";
+import Dashboard from "./components/views/Dashboard";
+import Login from "./components/views/Login";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {
+  const { token } = useAppSelector((state: RootState) => state.authReducer);
+  const isSignedIn = token.length > 0;
+
+  return isSignedIn ? <Dashboard /> : <Login />;
+};
 
 export default App;
