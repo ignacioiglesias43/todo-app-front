@@ -77,7 +77,13 @@ export const useAuthForm = (formType: FormType) => {
     } = fields;
     if (name && lastName && email && password && repeatPassword) {
       if (password === repeatPassword) {
-        const data: AuthUserDto = { name, lastName, email, password };
+        const data: AuthUserDto = {
+          name,
+          lastName,
+          email,
+          password,
+          repeatPassword,
+        };
 
         if (userName) {
           data.userName = userName;
