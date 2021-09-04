@@ -3,10 +3,12 @@ import { Action, combineReducers } from "redux";
 
 import taskReducer from "./tasks/taskReducer";
 import authReducer from "./auth/authReducer";
+import modalReducer from "./modal/modalReducer";
 
 const reducers = combineReducers({
   taskReducer,
   authReducer,
+  modalReducer,
 });
 
 const store = configureStore({

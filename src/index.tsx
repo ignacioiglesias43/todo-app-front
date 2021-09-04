@@ -8,14 +8,14 @@ import store from "./store/index";
 import theme from "./assets/themes/theme";
 
 import "./assets/css/App.css";
+import ModalDialog from "./components/organisms/ModalDialog";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ReduxProvider store={store}>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </ReduxProvider>
-  </React.StrictMode>,
+  <ReduxProvider store={store}>
+    <ThemeProvider theme={theme}>
+      <ModalDialog />
+      <App />
+    </ThemeProvider>
+  </ReduxProvider>,
   document.getElementById("root")
 );
