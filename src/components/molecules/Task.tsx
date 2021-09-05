@@ -15,7 +15,7 @@ interface TaskProps {
 }
 
 const Task: React.FC<TaskProps> = ({ task, index }) => {
-  const { checked, tooltip, handleChecked, handleDelete, handleEdit } =
+  const { checked, tooltip, handleChecked, openDelete, handleEdit } =
     useSingleTask(task);
   return (
     <TableRow>
@@ -48,7 +48,7 @@ const Task: React.FC<TaskProps> = ({ task, index }) => {
           </IconButton>
         </Tooltip>
         <Tooltip title="Delete Task">
-          <IconButton aria-label="delete" onClick={handleDelete}>
+          <IconButton aria-label="delete" onClick={openDelete}>
             <Delete color="error" />
           </IconButton>
         </Tooltip>

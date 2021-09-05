@@ -15,9 +15,12 @@ const taskReducer = (state = initialState, action: TaskAction): TaskState => {
     case ADD_TASK:
       return { ...state, tasks: state.tasks.concat(action.task!) };
     case REMOVE_TASK:
+      const newTasks = state.tasks.filter(
+        (task) => task.id !== action?.task?.id
+      );
       return {
         ...state,
-        tasks: state.tasks.filter((task) => task.id !== action?.task?.id),
+        tasks: newTasks,
       };
     case UPDATE_TASKS:
       return { ...state, tasks: action.tasks! };

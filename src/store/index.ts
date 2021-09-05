@@ -5,12 +5,14 @@ import taskReducer from "./tasks/taskReducer";
 import authReducer from "./auth/authReducer";
 import modalReducer from "./modal/modalReducer";
 import taskModalReducer from "./taskModal/taskModalReducer";
+import confirmDialogReducer from "./confirmDialog/confirmDialogReducer";
 
 const reducers = combineReducers({
   taskReducer,
   authReducer,
   modalReducer,
   taskModalReducer,
+  confirmDialogReducer,
 });
 
 const store = configureStore({

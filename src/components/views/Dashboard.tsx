@@ -1,4 +1,10 @@
-import { CssBaseline, Container, makeStyles, Button } from "@material-ui/core";
+import {
+  CssBaseline,
+  Container,
+  makeStyles,
+  Button,
+  Tooltip,
+} from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 
 import CustomAppBar from "../molecules/CustomAppBar";
@@ -17,15 +23,17 @@ const Dashboard: React.FC = () => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="xl" className={classes.container}>
-          <Button
-            variant="contained"
-            color="primary"
-            startIcon={<Add />}
-            onClick={handleOpenTaskModal}
-            className={classes.mainBtn}
-          >
-            Create task
-          </Button>
+          <Tooltip title="Create a task">
+            <Button
+              variant="contained"
+              color="primary"
+              startIcon={<Add />}
+              onClick={handleOpenTaskModal}
+              className={classes.mainBtn}
+            >
+              Create task
+            </Button>
+          </Tooltip>
           <ToDoTable rows={tasks} />
         </Container>
       </main>

@@ -10,11 +10,13 @@ import theme from "./assets/themes/theme";
 import "./assets/css/App.css";
 import ModalDialog from "./components/organisms/ModalDialog";
 import TaskModal from "./components/organisms/TaskModal";
+import ConfirmDialog from "./components/organisms/ConfirmDialog";
 
 ReactDOM.render(
   <ReduxProvider store={store}>
     <ThemeProvider theme={theme}>
       <ModalDialog />
+      <ConfirmDialog />
       <TaskModal />
       <App />
     </ThemeProvider>
