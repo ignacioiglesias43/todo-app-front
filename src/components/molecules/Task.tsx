@@ -20,7 +20,7 @@ const Task: React.FC<TaskProps> = ({ task, index }) => {
   return (
     <TableRow>
       <TableCell component="th" scope="row">
-        {index + 1}
+        {task.id}
       </TableCell>
       <TableCell>{task.title}</TableCell>
       <TableCell>{task.content}</TableCell>
