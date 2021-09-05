@@ -29,7 +29,7 @@ export const getSingleTask = (token: string, id: number) =>
     },
   });
 
-export const updateTask = (token: string, id: number, data: TaskDto) =>
+export const updateTaskService = (token: string, id: number, data: TaskDto) =>
   request<TaskDto>({
     method: "PATCH",
     url: `/tasks/${id}`,

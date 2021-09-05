@@ -7,12 +7,9 @@ import {
   TableRow,
   Paper,
   makeStyles,
-  IconButton,
-  Tooltip,
-  Switch,
 } from "@material-ui/core";
-import { Delete, Edit } from "@material-ui/icons";
 import { ITask } from "../../types/task";
+import Task from "../molecules/Task";
 
 interface ToDoTableProps {
   rows?: ITask[];
@@ -43,35 +40,7 @@ const ToDoTable: React.FC<ToDoTableProps> = ({ rows = [] }) => {
         </TableHead>
         <TableBody>
           {rows.map((task, index) => (
-            <TableRow key={task.id}>
-              <TableCell component="th" scope="row">
-                {index + 1}
-              </TableCell>
-              <TableCell>{task.title}</TableCell>
-              <TableCell>{task.content}</TableCell>
-              <TableCell>{task.startDate || "Not Assigned"}</TableCell>
-              <TableCell>{task.dueDate || "Not Assigned"}</TableCell>
-              <TableCell>
-                <Tooltip title={`Status: ${task?.status?.name || ""}`}>
-                  <Switch
-                    checked={task?.status?.id === 1}
-                    onChange={() => {}}
-                  />
-                </Tooltip>
-              </TableCell>
-              <TableCell>
-                <Tooltip title="Edit Task">
-                  <IconButton aria-label="delete">
-                    <Edit color="primary" />
-                  </IconButton>
-                </Tooltip>
-                <Tooltip title="Delete Task">
-                  <IconButton aria-label="delete">
-                    <Delete color="error" />
-                  </IconButton>
-                </Tooltip>
-              </TableCell>
-            </TableRow>
+            <Task task={task} index={index} key={task.id} />
           ))}
         </TableBody>
       </Table>
