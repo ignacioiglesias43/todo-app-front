@@ -4,6 +4,7 @@ import { ITask } from "../types/task";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { removeTask, updateSingleTask } from "../store/tasks/actionCreators";
 import { RootState } from "../store/index";
+import { updateConfirmDialogCallback } from "../store/confirmDialog/actionCreators";
 import {
   updateConfirmDialogTask,
   updateConfirmDialogVisible,
@@ -49,6 +50,7 @@ export const useSingleTask = (task: ITask) => {
         const result = await deleteTask(token, task.id!);
         if (result) {
           dispatch(removeTask(task));
+          dispatch(updateConfirmDialogCallback(false));
         }
       } catch (error: any) {
         console.log(error?.response);
