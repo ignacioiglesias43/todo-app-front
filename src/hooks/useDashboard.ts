@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { RootState } from "../store/index";
 import { useTasks } from "./useTasks";
+import { getUserInfoService } from "../api/user/services";
+import { AuthUserDto } from "../api/user/dto/auth-user.dto";
+import { updateUserInfo } from "../store/auth/actionCreators";
 import {
   updateTaskModalType,
   updateTaskModalVisible,
@@ -11,6 +14,7 @@ export const useDashboard = () => {
   const { userInfo } = useAppSelector((state: RootState) => state.authReducer);
   const dispatch = useAppDispatch();
   const tasks = useTasks();
+  const token = localStorage.getItem("JWT");
 
   const handleOpenTaskModal = () => {
     dispatch(updateTaskModalType("CREATE"));
@@ -18,8 +22,18 @@ export const useDashboard = () => {
   };
 
   useEffect(() => {
-    // TODO: getUserInfo
-    const getUserInfo = () => {};
+    const getUserInfo = async () => {
+      try {
+        const result = await getUserInfoService(token!);
+        if (result) {
+          const user: AuthUserDto = result.data;
+
+          dispatch(updateUserInfo(user));
+        }
+      } catch (error: any) {
+        console.log(error?.response);
+      }
+    };
     if (userInfo === null) {
       getUserInfo();
     }

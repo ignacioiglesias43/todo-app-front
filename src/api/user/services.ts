@@ -14,10 +14,19 @@ export const updateUserInfoService = (
   data: CreateUserDto,
   token: string
 ) =>
-  request({
+  request<AuthUserDto>({
     method: "PATCH",
     url: "/users/" + id,
     data,
+    headers: {
+      Authorization: "Bearer " + token,
+    },
+  });
+
+export const getUserInfoService = (token: string) =>
+  request<AuthUserDto>({
+    method: "GET",
+    url: "/users/own-info",
     headers: {
       Authorization: "Bearer " + token,
     },
