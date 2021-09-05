@@ -1,13 +1,14 @@
 import { CssBaseline, Container, makeStyles, Button } from "@material-ui/core";
 import { Add } from "@material-ui/icons";
 
-import { useDashboard } from "../../hooks/useDashboard";
 import CustomAppBar from "../molecules/CustomAppBar";
 import ToDoTable from "../organisms/ToDoTable";
 
+import { useDashboard } from "../../hooks/useDashboard";
+
 const Dashboard: React.FC = () => {
   const classes = useStyles();
-  const { tasks } = useDashboard();
+  const { tasks, handleOpenTaskModal } = useDashboard();
 
   return (
     <div className={classes.root}>
@@ -20,6 +21,7 @@ const Dashboard: React.FC = () => {
             variant="contained"
             color="primary"
             startIcon={<Add />}
+            onClick={handleOpenTaskModal}
             className={classes.mainBtn}
           >
             Create task

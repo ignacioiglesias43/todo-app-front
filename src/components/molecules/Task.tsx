@@ -15,7 +15,8 @@ interface TaskProps {
 }
 
 const Task: React.FC<TaskProps> = ({ task, index }) => {
-  const { checked, tooltip, handleChecked } = useSingleTask(task);
+  const { checked, tooltip, handleChecked, handleDelete, handleEdit } =
+    useSingleTask(task);
   return (
     <TableRow>
       <TableCell component="th" scope="row">
@@ -23,8 +24,14 @@ const Task: React.FC<TaskProps> = ({ task, index }) => {
       </TableCell>
       <TableCell>{task.title}</TableCell>
       <TableCell>{task.content}</TableCell>
-      <TableCell>{task.startDate || "Not Assigned"}</TableCell>
-      <TableCell>{task.dueDate || "Not Assigned"}</TableCell>
+      <TableCell>
+        {task.startDate
+          ? new Date(task.startDate).toDateString()
+          : "Not Assigned"}
+      </TableCell>
+      <TableCell>
+        {task.dueDate ? new Date(task.dueDate).toDateString() : "Not Assigned"}
+      </TableCell>
       <TableCell>
         <Tooltip title={`Status: ${tooltip}`}>
           <Checkbox
@@ -36,12 +43,12 @@ const Task: React.FC<TaskProps> = ({ task, index }) => {
       </TableCell>
       <TableCell>
         <Tooltip title="Edit Task">
-          <IconButton aria-label="delete">
+          <IconButton aria-label="edit" onClick={handleEdit}>
             <Edit color="secondary" />
           </IconButton>
         </Tooltip>
         <Tooltip title="Delete Task">
-          <IconButton aria-label="delete">
+          <IconButton aria-label="delete" onClick={handleDelete}>
             <Delete color="error" />
           </IconButton>
         </Tooltip>

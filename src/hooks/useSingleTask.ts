@@ -1,11 +1,19 @@
 import { updateTaskService } from "../api/task/services";
 import { useState } from "react";
 import { ITask } from "../types/task";
+import { useAppDispatch } from "../store/hooks";
+import {
+  updateTaskModalDetails,
+  updateTaskModalType,
+  updateTaskModalVisible,
+} from "../store/taskModal/actionCreators";
 
 export const useSingleTask = (task: ITask) => {
   const [checked, setChecked] = useState(task?.status?.id === 1);
   const [tooltip, setTooltip] = useState(task?.status?.name || "");
+  const dispatch = useAppDispatch();
   const token = localStorage.getItem("JWT")!;
+
   const handleChecked = async () => {
     try {
       const r = await updateTaskService(token, task?.id!, {
@@ -19,9 +27,19 @@ export const useSingleTask = (task: ITask) => {
     }
   };
 
+  const handleEdit = () => {
+    dispatch(updateTaskModalDetails(task));
+    dispatch(updateTaskModalType("UPDATE"));
+    dispatch(updateTaskModalVisible(true));
+  };
+
+  const handleDelete = () => {};
+
   return {
     checked,
     tooltip,
     handleChecked,
+    handleEdit,
+    handleDelete,
   };
 };

@@ -9,11 +9,13 @@ import theme from "./assets/themes/theme";
 
 import "./assets/css/App.css";
 import ModalDialog from "./components/organisms/ModalDialog";
+import TaskModal from "./components/organisms/TaskModal";
 
 ReactDOM.render(
   <ReduxProvider store={store}>
     <ThemeProvider theme={theme}>
       <ModalDialog />
+      <TaskModal />
       <App />
     </ThemeProvider>
   </ReduxProvider>,

@@ -21,9 +21,9 @@ const ToDoTable: React.FC<ToDoTableProps> = ({ rows = [] }) => {
   const columns = [
     "#",
     "Title",
-    "Content",
+    "Description",
     "Start Date",
-    "End Date",
+    "Due Date",
     "Status",
     "Actions",
   ];
