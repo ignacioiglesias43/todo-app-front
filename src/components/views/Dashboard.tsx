@@ -1,4 +1,5 @@
-import { CssBaseline, Container, makeStyles } from "@material-ui/core";
+import { CssBaseline, Container, makeStyles, Button } from "@material-ui/core";
+import { Add } from "@material-ui/icons";
 
 import { useDashboard } from "../../hooks/useDashboard";
 import CustomAppBar from "../molecules/CustomAppBar";
@@ -15,6 +16,14 @@ const Dashboard: React.FC = () => {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="xl" className={classes.container}>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<Add />}
+            className={classes.mainBtn}
+          >
+            Create task
+          </Button>
           <ToDoTable rows={tasks} />
         </Container>
       </main>
@@ -28,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
-
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
@@ -37,7 +45,13 @@ const useStyles = makeStyles((theme) => ({
     overflowX: "hidden",
   },
   container: {
+    display: "flex",
+    flexDirection: "column",
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
+  },
+  mainBtn: {
+    marginBottom: 20,
+    alignSelf: "flex-end",
   },
 }));
