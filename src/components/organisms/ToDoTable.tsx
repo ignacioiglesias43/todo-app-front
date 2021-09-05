@@ -7,9 +7,11 @@ import {
   TableRow,
   Paper,
   makeStyles,
+  TablePagination,
 } from "@material-ui/core";
 import { ITask } from "../../types/task";
 import Task from "../molecules/Task";
+import { usePagination } from "../../hooks/usePagination";
 
 interface ToDoTableProps {
   rows?: ITask[];
@@ -19,7 +21,7 @@ const ToDoTable: React.FC<ToDoTableProps> = ({ rows = [] }) => {
   const classes = useStyles();
 
   const columns = [
-    "#",
+    "#ID",
     "Title",
     "Description",
     "Start Date",
@@ -27,6 +29,8 @@ const ToDoTable: React.FC<ToDoTableProps> = ({ rows = [] }) => {
     "Status",
     "Actions",
   ];
+
+  const { page, handleChangePage } = usePagination(rows.length);
 
   return (
     <TableContainer component={Paper}>
@@ -39,11 +43,19 @@ const ToDoTable: React.FC<ToDoTableProps> = ({ rows = [] }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((task, index) => (
+          {rows.slice(page * 10, page * 10 + 10).map((task, index) => (
             <Task task={task} index={index} key={task.id} />
           ))}
         </TableBody>
       </Table>
+      <TablePagination
+        component="div"
+        page={page}
+        count={rows.length}
+        rowsPerPage={10}
+        rowsPerPageOptions={[]}
+        onPageChange={handleChangePage}
+      />
     </TableContainer>
   );
 };
