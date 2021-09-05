@@ -1,6 +1,12 @@
+import { StatusDto } from "../api/status/dto/status.dto";
 interface ITask {
-  id: number;
-  description: string;
+  id?: number;
+  title: string;
+  content: string;
+  startDate?: string;
+  dueDate?: string;
+  statusId?: number;
+  status?: StatusDto;
 }
 
 type TaskState = {
@@ -9,7 +15,8 @@ type TaskState = {
 
 type TaskAction = {
   type: string;
-  task: ITask;
+  task?: ITask;
+  tasks?: Itask[];
 };
 
 type DispatchTaskActionType = (args: TaskAction) => TaskAction;
