@@ -2,7 +2,7 @@ import { updateTaskService, deleteTask } from "../api/task/services";
 import { useState, useEffect } from "react";
 import { ITask } from "../types/task";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { removeTask } from "../store/tasks/actionCreators";
+import { removeTask, updateSingleTask } from "../store/tasks/actionCreators";
 import { RootState } from "../store/index";
 import {
   updateConfirmDialogTask,
@@ -31,6 +31,7 @@ export const useSingleTask = (task: ITask) => {
       });
       setChecked(r.data.status?.id === 1);
       setTooltip(r.data.status?.name! || "");
+      dispatch(updateSingleTask(r.data));
     } catch (error) {
       console.log("error", error);
     }
