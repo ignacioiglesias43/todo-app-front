@@ -14,11 +14,11 @@ interface TaskProps {
   index: number;
 }
 
-const Task: React.FC<TaskProps> = ({ task, index }) => {
+const Task: React.FC<TaskProps> = ({ task }) => {
   const { checked, tooltip, handleChecked, openDelete, handleEdit } =
     useSingleTask(task);
   return (
-    <TableRow>
+    <TableRow style={{ textDecoration: checked ? "line-through" : "none" }}>
       <TableCell component="th" scope="row">
         {task.id}
       </TableCell>
