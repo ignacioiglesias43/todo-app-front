@@ -1,11 +1,4 @@
-import {
-  FormControlLabel,
-  Checkbox,
-  Button,
-  Grid,
-  Link,
-  makeStyles,
-} from "@material-ui/core";
+import { Button, Grid, Link, makeStyles } from "@material-ui/core";
 import { useAuthForm } from "../../hooks/useAuthForm";
 import LoginForm from "../molecules/LoginForm";
 import SignupForm from "../molecules/SignupForm";
@@ -24,17 +17,26 @@ const AuthForm = ({ formType, setFormType }: AuthFormProps) => {
     setFormType(formType === "REGISTER" ? "LOGIN" : "REGISTER");
 
   return (
-    <form className={classes.form} noValidate onSubmit={submitForm}>
+    <form
+      className={classes.form}
+      noValidate
+      onSubmit={submitForm}
+      data-testid="Form"
+    >
       {formType === "LOGIN" ? (
         <>
-          <LoginForm formFields={formFields} setValues={setValues} />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+          <LoginForm
+            formFields={formFields}
+            setValues={setValues}
+            dataTestId="LoginForm"
           />
         </>
       ) : (
-        <SignupForm formFields={formFields} setValues={setValues} />
+        <SignupForm
+          formFields={formFields}
+          setValues={setValues}
+          dataTestId="SignupForm"
+        />
       )}
       <Button
         type="submit"

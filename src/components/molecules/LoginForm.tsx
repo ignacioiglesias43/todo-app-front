@@ -6,11 +6,12 @@ interface LoginFormProps {
   setValues: (
     key: keyof ILoginForm
   ) => (e: React.ChangeEvent<HTMLInputElement>) => void;
+  dataTestId: string;
 }
 
-const LoginForm = ({ formFields, setValues }: LoginFormProps) => {
+const LoginForm = ({ formFields, setValues, dataTestId }: LoginFormProps) => {
   return (
-    <>
+    <div data-testid={dataTestId}>
       <TextField
         variant="outlined"
         margin="normal"
@@ -36,7 +37,7 @@ const LoginForm = ({ formFields, setValues }: LoginFormProps) => {
         type="password"
         onChange={setValues("password")}
       />
-    </>
+    </div>
   );
 };
 

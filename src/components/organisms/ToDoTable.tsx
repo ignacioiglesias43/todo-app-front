@@ -44,7 +44,7 @@ const ToDoTable: React.FC<ToDoTableProps> = ({ rows = [] }) => {
         </TableHead>
         <TableBody>
           {rows.slice(page * 10, page * 10 + 10).map((task, index) => (
-            <Task task={task} index={index} key={task.id} />
+            <Task task={task} key={task.id} />
           ))}
         </TableBody>
       </Table>

@@ -6,11 +6,12 @@ interface SignupFormProps {
   setValues: (
     key: keyof ISignupForm
   ) => (e: React.ChangeEvent<HTMLInputElement>) => void;
+  dataTestId: string;
 }
 
-const SignupForm = ({ formFields, setValues }: SignupFormProps) => {
+const SignupForm = ({ formFields, setValues, dataTestId }: SignupFormProps) => {
   return (
-    <>
+    <div data-testid={dataTestId}>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -96,7 +97,7 @@ const SignupForm = ({ formFields, setValues }: SignupFormProps) => {
         type="password"
         onChange={setValues("repeatPassword")}
       />
-    </>
+    </div>
   );
 };
 

@@ -11,7 +11,6 @@ import { useSingleTask } from "../../hooks/useSingleTask";
 
 interface TaskProps {
   task: ITask;
-  index: number;
 }
 
 const Task: React.FC<TaskProps> = ({ task }) => {
